@@ -1,61 +1,167 @@
-//Spanish Number Game
-//Code by Ethan MacDonald. 10/27/15 - 10/29/15
-//Gives the user a numeral and the user inputs the Spanish equivalent. **as of 10/27/15 works with 0-16** All working now! :D 10/29/15
+//Spanish Number Game v1.1
+//Code by Ethan MacDonald on 4/27/16
+//Checks a users spelling of a randomly generated Spanish number against proper spelling.
+//Eventually I'd like it to be able to look up a spelling based a user input. 
 
+package spanishSpelling;
 import java.util.*;
-public class MainClass {	
-static Scanner userInput = new Scanner(System.in);
+public class MainClass {
 	
-	//Main method.
 	public static void main(String[] args) {
-		//Begins the game.
-		System.out.println("This is a simple game where you input the \nSpanish spelling of the numeral you are given.");
-		System.out.println("When you want to stop playing, type 'quit'.");
-		System.out.println("===============================================");
+		Scanner userInput = new Scanner(System.in);
+		int test = userInput.nextInt();
+		numToText(test);
 		
-		int quit = 0;
-		int numCorrect = 0;
-		int totalNum = 0;
-		String usersAnswer;
-		//Main game loop.
-		while(quit == 0){
-			
-			//Assigns randomNum its spanishNum.
-			String spanishNum = "default";
-			int randomNum;
-			randomNum = Numbers.generateRandomNum();
-			if(randomNum <= 15){
-				spanishNum = Numbers.lessThan16(randomNum);
-			} else if(randomNum > 15 && randomNum != 100) {
-				spanishNum = Numbers.greaterThan15(randomNum);
-			} else if (randomNum == 100){
-				spanishNum = "ciento";
-			} else {
-				System.out.println("Somthing went wrong :/");
-			}
-			
-			//Asks the user for the Correct spanishNum, says whether correct or incorrect.
-			System.out.print(randomNum + " : "); usersAnswer = userInput.nextLine();
-			if(usersAnswer.equals(spanishNum)){
-				System.out.println("Correct!");
-				numCorrect++;
-			} else if(usersAnswer.equals("quit")){
-				quit = 1;
-				System.out.println("===============================================");
-				System.out.println("Thanks for playing!");
-				System.out.println("You got " + numCorrect + " correct out of " + totalNum + ".");
-			} else {
-				System.out.println("Incorrect!");
-				System.out.println("The correct answer was: " + spanishNum + "!");
-			}
-			totalNum++;
-		}
-		/* //Uncomment for bug fixing.
-		System.out.println(spanishNum);
-		System.out.println(randomNum);
-		*/
 	}
+	//shared arrays:
+	//0-9
+	public String[] singlesArray = new String[]{"cero","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve"};
+	//11-15
+	public String[] teensArray = new String[]{"once","doce","trece","catorce","quince"};
+	//10-90 whole
+	public String[] doublesArray = new String[]{"diez","veinte","treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa"};
+	//100-1000 whole
+	public String[] triplesArray = new String[]{"ciento","doscientos","trescientos","cuatrocientos","quinientos","seiscientos","setecientos","ochocientos","novecientos","mil"};
+	
+	//method which turns a random number 0-10000 into Spanish text
+	public static String numToText(int input){
+		
+		//handles 0-9
+		if(input<10){
+			System.out.println("0-9"); //for testing
+			
+			
+			
+		}
+		//handles 11-15
+		else if(input>10 && input<16){
+			System.out.println("11-15"); //for testing
+			
+			
+			
+		}
+		//handles 10-90 whole
+		else if(input>9 && input<91 && input%10 ==0){
+			System.out.println("10-90 whole"); //for testing
+			
+			
+			
+		}
+		//handles 16-99 mixed
+		else if(input>15 && input<100){
+			System.out.println("16-99 mixed"); //for testing
+			
+			
+			
+		}
+		//handles 100-900 whole
+		else if(input>99 && input<901 && input%100 ==0){
+			System.out.println("100-900 whole"); //for testing
+			
+			
+			
+		}
+		//handles 101-999 mixed
+		else if(input>100 && input<1000){
+			System.out.println("101-999 mixed"); //for testing
+			
+			
+			
+		}
+		//handles 1000-10000 whole
+		else if(input>999 && input<10001 && input%1000 ==0){
+			System.out.println("1000-10000 whole"); //for testing
+			
+			
+			
+		}
+		//handles 1001-9999 mixed
+		else if(input>1000 && input<10000){
+			System.out.println("1001-9999 mixed"); //for testing
+			
+			
+			
+		}
+		//handles 10000+, which should be an impossible input
+		else{System.out.println("Spooky Scarry Error Code 23! \nNumber probaly exceeded 10000\n(which really shouldn't happen)");}
+		
+		
+		
+		
+		
+		String placeholder = ""; return placeholder;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
