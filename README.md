@@ -1,5 +1,6 @@
 # spanishNumbers
-Imported to GitHub of 1/30/16. Updated 4/27/16
+Imported to GitHub of 1/30/16. Updated 4/27/16.
+
 Basic program that has you input the spanish word equivalent of a numeral. Expaned to work for numbers up to 10,000.
 
 Run and keep everything from the .zip in the same folder and you're golden. 
