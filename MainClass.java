@@ -1,5 +1,5 @@
-//Spanish Number Game v1.1.1
-//Code by Ethan MacDonald on 4/27/16 . 4/28/16
+//Spanish Number Game v1.1.2
+//Code by Ethan MacDonald on 4/27/16 . 4/28/16 . 4/29/16
 //Checks a users spelling of a randomly generated Spanish number against proper spelling.
 //Eventually I'd like it to be able to look up a spelling based a user input. 
 
@@ -10,9 +10,11 @@ public class MainClass {
 	public static void main(String[] args) {
 		Scanner userInput = new Scanner(System.in);
 		int test = userInput.nextInt();
-		int s = test%10;
-		//System.out.println(s);
-		//System.out.println((test-s)/10);
+		//int s = test%10;
+		//int t = ((test-s)/10)%10;
+		//int r = (((test-s)/10)-t)/10;
+		//System.out.println(s + " " + t + " "+ r);
+		
 		System.out.println(numToText(test));
 		
 	}
@@ -33,6 +35,7 @@ public class MainClass {
 		//handles 0-9
 		if(input<10){
 			System.out.println("0-9"); //for testing
+			//switch statement directly relates single array to the single digits
 			switch(input){
 				case 0: returnString = singlesArray[0];
 					break;
@@ -59,6 +62,7 @@ public class MainClass {
 		//handles 11-15
 		else if(input>10 && input<16){
 			System.out.println("11-15"); //for testing
+			//switch statement directly relates the teen array to the teen numbers with unique names
 			switch(input){
 				case 11: returnString = teensArray[0];
 					break;
@@ -75,6 +79,7 @@ public class MainClass {
 		//handles 10-90 whole
 		else if(input>9 && input<91 && input%10 ==0){
 			System.out.println("10-90 whole"); //for testing
+			//switch statement directly relates doubles array to the double digit numbers
 			switch(input){
 				case 10: returnString = doublesArray[0];
 					break;
@@ -99,12 +104,13 @@ public class MainClass {
 		//handles 16-99 mixed
 		else if(input>15 && input<100){
 			System.out.println("16-99 mixed"); //for testing
+			//the first and second part of a 16-99 mixed
 			String partOne = "";
 			String partTwo ="";
-			
+			//splits the input into its two digits(although the second stays a double digit)
 			int secondDigit = input%10;
 			int firstDigit = input-secondDigit;
-			
+			//switch statement directly relates the singles array to the second digit and word
 			switch(secondDigit){
 				case 0: partTwo = singlesArray[0];
 					break;
@@ -127,7 +133,7 @@ public class MainClass {
 				case 9: partTwo = singlesArray[9];
 					break;
 			}
-			
+			//switch statement directly relates the doubles array to the first digit and word
 			switch(firstDigit){
 				case 10: partOne = doublesArray[0];
 					break;
@@ -148,11 +154,12 @@ public class MainClass {
 				case 90: partOne = doublesArray[8];
 					break;
 			}
-			returnString = partOne + " y "+ partTwo;	
+			returnString = partOne + " y "+ partTwo; //returns the text properly formatted	
 		}
 		//handles 100-900 whole
 		else if(input>99 && input<901 && input%100 ==0){
 			System.out.println("100-900 whole"); //for testing
+			//switch statement directly relates the triples array to the triple digit numbers
 			switch(input){
 				case 100: returnString = triplesArray[0];
 					break;
@@ -177,6 +184,215 @@ public class MainClass {
 		//handles 101-999 mixed
 		else if(input>100 && input<1000){
 			System.out.println("101-999 mixed"); //for testing
+			//the first, second and third parts of a 101-999 mixed
+			String partOne = "";
+			String partTwo ="";
+			String partThree = "";
+			//splits the input into its three digits
+			int thirdDigit = input%10;									//example: 12(3) in 123
+			int secondDigit = ((input-thirdDigit)/10)%10;				//example: 1(2)3 in 123
+			int firstDigit = (((input-thirdDigit)/10)-secondDigit)/10;	//example: (1)23 in 123
+			//sets up for testing of teen numbers
+			String lastTwoDigitsString = ""+ secondDigit + thirdDigit; 		//combines the last two like 2+3 = 23
+			int lastTwoDigitsInt = Integer.parseInt(lastTwoDigitsString);	//changes that back to an int
+			//System.out.println(lastTwoDigitsInt); //for testing
+			
+			//handles format of a three digit number that does not have zeros or teens
+			if(secondDigit != 0 && thirdDigit != 0 && lastTwoDigitsInt>15){
+				//System.out.println(thirdDigit);
+				//System.out.println(secondDigit); //for testing
+				//System.out.println(firstDigit);
+				switch(thirdDigit){
+					case 0: partThree = singlesArray[0];
+						break;
+					case 1: partThree = singlesArray[1];
+						break;
+					case 2: partThree = singlesArray[2];
+						break;
+					case 3: partThree = singlesArray[3];
+						break;
+					case 4: partThree = singlesArray[4];
+						break;
+					case 5: partThree = singlesArray[5];
+						break;
+					case 6: partThree = singlesArray[6];
+						break;
+					case 7: partThree = singlesArray[7];
+						break;
+					case 8: partThree = singlesArray[8];
+						break;
+					case 9: partThree = singlesArray[9];
+						break;					
+				} 
+				switch(secondDigit){
+					case 1: partTwo = doublesArray[0];
+						break;
+					case 2: partTwo = doublesArray[1];
+						break;
+					case 3: partTwo = doublesArray[2];
+						break;
+					case 4: partTwo = doublesArray[3];
+						break;
+					case 5: partTwo = doublesArray[4];
+						break;
+					case 6: partTwo = doublesArray[5];
+						break;
+					case 7: partTwo = doublesArray[6];
+						break;
+					case 8: partTwo = doublesArray[7];
+						break;
+					case 9: partTwo = doublesArray[8];
+						break;
+				}
+				switch(firstDigit){
+					case 1: partOne = triplesArray[0];
+						break;
+					case 2: partOne = triplesArray[1];
+						break;
+					case 3: partOne = triplesArray[2];
+						break;
+					case 4: partOne = triplesArray[3];
+						break;
+					case 5: partOne = triplesArray[4];
+						break;
+					case 6: partOne = triplesArray[5];
+						break;
+					case 7: partOne = triplesArray[6];
+						break;
+					case 8: partOne = triplesArray[7];
+						break;
+					case 9: partOne = triplesArray[8];
+						break;
+				}
+				returnString = partOne + " " + partTwo + " y " + partThree;
+			}
+			//handles format of the hundred and ones
+			else if(secondDigit == 0 && thirdDigit != 0 && (lastTwoDigitsInt>15 || lastTwoDigitsInt<11)){
+				switch(thirdDigit){
+					case 0: partThree = singlesArray[0];
+						break;
+					case 1: partThree = singlesArray[1];
+						break;
+					case 2: partThree = singlesArray[2];
+						break;
+					case 3: partThree = singlesArray[3];
+						break;
+					case 4: partThree = singlesArray[4];
+						break;
+					case 5: partThree = singlesArray[5];
+						break;
+					case 6: partThree = singlesArray[6];
+						break;
+					case 7: partThree = singlesArray[7];
+						break;
+					case 8: partThree = singlesArray[8];
+						break;
+					case 9: partThree = singlesArray[9];
+						break;					
+				} 
+				switch(firstDigit){
+					case 1: partOne = triplesArray[0];
+						break;
+					case 2: partOne = triplesArray[1];
+						break;
+					case 3: partOne = triplesArray[2];
+						break;
+					case 4: partOne = triplesArray[3];
+						break;
+					case 5: partOne = triplesArray[4];
+						break;
+					case 6: partOne = triplesArray[5];
+						break;
+					case 7: partOne = triplesArray[6];
+						break;
+					case 8: partOne = triplesArray[7];
+						break;
+					case 9: partOne = triplesArray[8];
+						break;
+				}
+				returnString = partOne + " " + partThree;
+			}
+			//handles the format of hundred and tens
+			else if(secondDigit != 0 && thirdDigit == 0 && (lastTwoDigitsInt>15 || lastTwoDigitsInt<11)){
+				switch(secondDigit){
+					case 1: partTwo = doublesArray[0];
+						break;
+					case 2: partTwo = doublesArray[1];
+						break;
+					case 3: partTwo = doublesArray[2];
+						break;
+					case 4: partTwo = doublesArray[3];
+						break;
+					case 5: partTwo = doublesArray[4];
+						break;
+					case 6: partTwo = doublesArray[5];
+						break;
+					case 7: partTwo = doublesArray[6];
+						break;
+					case 8: partTwo = doublesArray[7];
+						break;
+					case 9: partTwo = doublesArray[8];
+						break;
+				}
+				switch(firstDigit){
+					case 1: partOne = triplesArray[0];
+						break;
+					case 2: partOne = triplesArray[1];
+						break;
+					case 3: partOne = triplesArray[2];
+						break;
+					case 4: partOne = triplesArray[3];
+						break;
+					case 5: partOne = triplesArray[4];
+						break;
+					case 6: partOne = triplesArray[5];
+						break;
+					case 7: partOne = triplesArray[6];
+						break;
+					case 8: partOne = triplesArray[7];
+						break;
+					case 9: partOne = triplesArray[8];
+						break;
+				}
+				returnString = partOne + " " + partTwo;	
+			}
+			//handles the format of hundred and teens
+			else if(secondDigit != 0 && thirdDigit != 0 && (lastTwoDigitsInt<15 || lastTwoDigitsInt>11)){
+				switch(firstDigit){
+					case 1: partOne = triplesArray[0];
+						break;
+					case 2: partOne = triplesArray[1];
+						break;
+					case 3: partOne = triplesArray[2];
+						break;
+					case 4: partOne = triplesArray[3];
+						break;
+					case 5: partOne = triplesArray[4];
+						break;
+					case 6: partOne = triplesArray[5];
+						break;
+					case 7: partOne = triplesArray[6];
+						break;
+					case 8: partOne = triplesArray[7];
+						break;
+					case 9: partOne = triplesArray[8];
+						break;
+				}
+				switch(lastTwoDigitsInt){
+					case 11: partTwo = teensArray[0];
+						break;
+					case 12: partTwo = teensArray[1];
+						break;
+					case 13: partTwo = teensArray[2];
+						break;
+					case 14: partTwo = teensArray[3];
+						break;
+					case 15: partTwo = teensArray[4];
+						break;
+				}
+				returnString = partOne + " " + partTwo;	
+			}
+			
 			
 			
 			
