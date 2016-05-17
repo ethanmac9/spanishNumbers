@@ -1,5 +1,5 @@
-//Spanish Number Game v1.1.2
-//Code by Ethan MacDonald on 4/27/16 . 4/28/16 . 4/29/16
+//Spanish Number Game v1.2.1
+//Code by Ethan MacDonald on 4/27/16 . 4/28/16 . 4/29/16 . 5/1/16 . 5/16/16
 //Checks a users spelling of a randomly generated Spanish number against proper spelling.
 //Eventually I'd like it to be able to look up a spelling based a user input. 
 
@@ -9,14 +9,53 @@ public class MainClass {
 	
 	public static void main(String[] args) {
 		Scanner userInput = new Scanner(System.in);
-		int test = userInput.nextInt();
-		//int s = test%10;
-		//int t = ((test-s)/10)%10;
-		//int r = (((test-s)/10)-t)/10;
-		//System.out.println(s + " " + t + " "+ r);
+		boolean run = true;
+		int numCorrect = 0;
+		int numWrong= 0;
+		int total= 0;
+		String rawInput = "default";
 		
-		System.out.println(numToText(test));
+		//Prints some info at the beginning
+		System.out.println("Welcome to Spanish Number by Ethan! (v1.2.1 working 0-999)");
+		System.out.println("You will be given a number, then you write the spanish.");
+		System.out.println("(Type exit or quit when you are finished)\n(You can type update to get an update on your progress)");
+		System.out.println("==========================================");
 		
+		//Main loop
+		do{
+			int randomNum = generateRandomNum();
+			System.out.print(randomNum + " : ");
+			rawInput = userInput.nextLine();
+			String input = rawInput.toLowerCase();
+			String text = numToText(randomNum);
+			//System.out.println(text); // for testing
+			
+			if(input.equals(text)){
+				System.out.println("Correct!");
+				numCorrect++;
+			}
+			else if(input.equals("quit") || input.equals("exit")){
+				System.out.println("==========================================");
+				System.out.println("\n\nThanks for playing!");
+				System.out.println("Correct: "+ numCorrect);
+				System.out.println("Wrong:   "+ numWrong);
+				System.out.println("Total:   "+ total);
+				run =false;
+			}
+			else if(input.equals("update")){
+				System.out.println();
+				System.out.println("Correct: "+ numCorrect);
+				System.out.println("Wrong:   "+ numWrong);
+				System.out.println("Total:   "+ total);
+				System.out.println("The answer is: " + text);
+				System.out.println();
+			}else{
+				System.out.print("Incorrect! ");
+				System.out.println("The correct answer was: \n"+ text);
+				System.out.println();
+				numWrong++;
+			} total++;
+		}while(run);
 	}
 	//shared arrays:
 	//0-9
@@ -30,11 +69,20 @@ public class MainClass {
 	
 	public static String returnString = "";
 	
+	//Assigns randomNum a random number between 0 and 999.
+	public static int generateRandomNum(){
+		return (int) (Math.random() * 1000);
+	}
+	
 	//method which turns a number 0-10000 into Spanish text
 	public static String numToText(int input){
+		//easter eggs
+		if(input == 232323){System.out.println("Spagetti Monster hath Praise!");}
+		else if(input == 23232323){System.out.println("Squinto hath Praise!");}
+		
 		//handles 0-9
-		if(input<10){
-			System.out.println("0-9"); //for testing
+		else if(input<10){
+			//System.out.println("0-9"); //for testing
 			//switch statement directly relates single array to the single digits
 			switch(input){
 				case 0: returnString = singlesArray[0];
@@ -61,7 +109,7 @@ public class MainClass {
 		}
 		//handles 11-15
 		else if(input>10 && input<16){
-			System.out.println("11-15"); //for testing
+			//System.out.println("11-15"); //for testing
 			//switch statement directly relates the teen array to the teen numbers with unique names
 			switch(input){
 				case 11: returnString = teensArray[0];
@@ -78,7 +126,7 @@ public class MainClass {
 		}
 		//handles 10-90 whole
 		else if(input>9 && input<91 && input%10 ==0){
-			System.out.println("10-90 whole"); //for testing
+			//System.out.println("10-90 whole"); //for testing
 			//switch statement directly relates doubles array to the double digit numbers
 			switch(input){
 				case 10: returnString = doublesArray[0];
@@ -103,7 +151,7 @@ public class MainClass {
 		}
 		//handles 16-99 mixed
 		else if(input>15 && input<100){
-			System.out.println("16-99 mixed"); //for testing
+			//System.out.println("16-99 mixed"); //for testing
 			//the first and second part of a 16-99 mixed
 			String partOne = "";
 			String partTwo ="";
@@ -158,7 +206,7 @@ public class MainClass {
 		}
 		//handles 100-900 whole
 		else if(input>99 && input<901 && input%100 ==0){
-			System.out.println("100-900 whole"); //for testing
+			//System.out.println("100-900 whole"); //for testing
 			//switch statement directly relates the triples array to the triple digit numbers
 			switch(input){
 				case 100: returnString = triplesArray[0];
@@ -183,7 +231,7 @@ public class MainClass {
 		}
 		//handles 101-999 mixed
 		else if(input>100 && input<1000){
-			System.out.println("101-999 mixed"); //for testing
+			//System.out.println("101-999 mixed"); //for testing
 			//the first, second and third parts of a 101-999 mixed
 			String partOne = "";
 			String partTwo ="";
@@ -415,88 +463,6 @@ public class MainClass {
 		else{System.out.println("Spooky Scarry Error Code 23! \nNumber probaly exceeded 10000\n(which really shouldn't happen)");}
 		
 		
-		
-		
-		
-		String placeholder = ""; return returnString;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		return returnString;
+	}	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
